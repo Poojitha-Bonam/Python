@@ -4,6 +4,8 @@ print(8-5)
 print(8*5)
 print(8/5)
 print(8//5)
+#Exponent
+print(5**8)
 #variables
 a = 85
 b = 58
