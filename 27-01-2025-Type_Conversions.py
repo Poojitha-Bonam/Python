@@ -79,7 +79,6 @@ a = range(5.8)  
 print(a) # TypeError
 
 
-
 print("-----str conversions-----")
 
 print("-----str to int-----")
@@ -121,7 +120,6 @@ print("-----str to range-----")
 # A string cannot be directly converted to a range, first we need to convert the string to an integer and then create a range.
 number = int("5")
 print(range(number))  # Output: range(0, 5)
-
 
 
 print("-----bool conversions-----")
@@ -170,6 +168,7 @@ print("-----bool to range-----")
 # A boolean cannot be directly converted to a range, first we need to convert the string to an integer and then create a range.
 a = range(int(True))
 print(a) # Output: range(0, 1)
+
 
 print("-----list conversions-----")
 
@@ -318,6 +317,7 @@ print("-----dict to range-----")
 my_dict = {'a': 0, 'b': 5}
 print(range(my_dict))  # TypeError
 
+
 print("-----range conversions-----")
 
 print("-----range to int-----")
@@ -352,15 +352,3 @@ print(dict(my_range))# TypeError
 print("-----range to range-----")
 my_range = range(1, 5)
 print(range(my_range))  #TypeError
-
-
-
-
-
-
-
-
-
-
-
-
