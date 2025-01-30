@@ -66,5 +66,3 @@ else:
             print(a)
         else:
             print(current_units*150)
-
-#Loops -->
