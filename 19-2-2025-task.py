@@ -1,4 +1,4 @@
-# Write a program to find the greatest of three numbers.
+# Write a program to find the greatest of three numbers
 a = int(input())
 b = int(input())
 c = int(input())
