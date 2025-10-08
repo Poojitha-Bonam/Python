@@ -1,0 +1,152 @@
+-- 1. Names of students in the "Computer Science" department
+SELECT s.name
+FROM Students s
+JOIN Departments d ON s.dept_id = d.dept_id
+WHERE d.dept_name = 'Computer Science';
+
+-- 2. Average marks of students in each department, sorted by highest average
+SELECT d.dept_name, AVG(s.marks) AS avg_marks
+FROM Students s
+JOIN Departments d ON s.dept_id = d.dept_id
+GROUP BY d.dept_name
+ORDER BY avg_marks DESC;
+
+-- 3. Students enrolled in more than 3 courses
+SELECT s.name, COUNT(e.course_id) AS total_courses
+FROM Students s
+JOIN Enrollments e ON s.student_id = e.student_id
+GROUP BY s.student_id, s.name
+HAVING COUNT(e.course_id) > 3;
+
+-- 4. Department with the maximum number of students enrolled
+SELECT d.dept_name, COUNT(s.student_id) AS total_students
+FROM Students s
+JOIN Departments d ON s.dept_id = d.dept_id
+GROUP BY d.dept_name
+ORDER BY total_students DESC
+LIMIT 1;
+
+
+
+# ==============================
+# OOP: Student Class
+# ==============================
+class Student:
+    def __init__(self, name, roll_no, course_list=None):
+        self.name = name
+        self.roll_no = roll_no
+        self.course_list = course_list if course_list else []
+
+    def display_details(self):
+        print(f"Name: {self.name}, Roll No: {self.roll_no}, Courses: {self.course_list}")
+
+    def update_course(self, course_name):
+        self.course_list.append(course_name)
+
+# Example usage
+print("=== Student Class ===")
+s1 = Student("Alice", 101, ["Math", "Physics"])
+s1.display_details()
+s1.update_course("Computer Science")
+s1.display_details()
+print()
+
+
+# ==============================
+# OOP: Inheritance with Abstract Class
+# ==============================
+from abc import ABC, abstractmethod
+
+class Person(ABC):
+    def __init__(self, name, id):
+        self.name = name
+        self.id = id
+
+    @abstractmethod
+    def return_role(self):
+        pass
+
+class StudentPerson(Person):
+    def return_role(self):
+        return "Student"
+
+class Teacher(Person):
+    def return_role(self):
+        return "Teacher"
+
+# Example usage
+print("=== Abstract Class Person ===")
+p1 = StudentPerson("Bob", 201)
+p2 = Teacher("Dr. Smith", 301)
+print(f"{p1.name} is a {p1.return_role()}")
+print(f"{p2.name} is a {p2.return_role()}")
+print()
+
+
+# String Problem 1: Valid Parentheses
+
+def is_valid_parentheses(s):
+    stack = []
+    mapping = {')':'(', '}':'{', ']':'['}
+    for char in s:
+        if char in mapping.values():
+            stack.append(char)
+        elif char in mapping.keys():
+            if not stack or mapping[char] != stack.pop():
+                return False
+    return not stack
+
+print("=== Valid Parentheses ===")
+test_strings = ["(())", "({[]})", "({[})", "()[]{}"]
+for ts in test_strings:
+    print(f"{ts}: {is_valid_parentheses(ts)}")
+print()
+
+
+# String Problem 2: Anagram Check
+
+def are_anagrams(str1, str2):
+    str1 = str1.replace(" ", "").lower()
+    str2 = str2.replace(" ", "").lower()
+
+    if len(str1) != len(str2):
+        return False
+
+    count1 = {}
+    count2 = {}
+
+    for char in str1:
+        if char in count1:
+            count1[char] += 1
+        else:
+            count1[char] = 1
+
+    for char in str2:
+        if char in count2:
+            count2[char] += 1
+        else:
+            count2[char] = 1
+
+    # Compare frequency dictionaries
+    for key in count1:
+        if key not in count2 or count1[key] != count2[key]:
+            return False
+
+    return True
+
+print(are_anagrams("listen", "silent"))  # True
+print(are_anagrams("hello", "world"))    # False
+print(are_anagrams("evil", "vile"))      # True
+
+Essay – Software Engineering (Approx. 300 words)
+
+Software engineering is a systematic and disciplined approach to designing, developing, testing, and maintaining software applications. Unlike simple programming, which focuses on writing code to solve specific problems, software engineering encompasses a broader perspective, emphasizing quality, scalability, and reliability. At its core, software engineering combines principles from computer science, project management, and engineering to ensure that software products meet user requirements efficiently and effectively.
+
+A fundamental aspect of software engineering is the software development life cycle (SDLC), which includes stages such as requirement analysis, design, implementation, testing, deployment, and maintenance. Each stage plays a crucial role in reducing errors, optimizing performance, and managing resources. Requirement analysis ensures that developers understand the needs and expectations of users. Design involves creating models and architectures that guide the coding process, while testing verifies the correctness, performance, and security of the software.
+
+Software engineering also emphasizes the importance of methodologies such as Agile, Waterfall, and DevOps, which help teams collaborate and adapt to changing requirements. Agile, for instance, promotes iterative development and continuous feedback, ensuring that software evolves according to user needs. In contrast, DevOps integrates development and operations to streamline deployment and monitoring processes.
+
+Another critical aspect of software engineering is maintaining code quality and documentation. Well-documented and modular code enhances maintainability and facilitates future upgrades. Additionally, software engineers must consider ethical and security concerns, ensuring that applications protect user data and operate reliably.
+
+In today’s digital world, software engineering is indispensable across industries—from finance and healthcare to entertainment and transportation. It not only enables businesses to innovate but also improves efficiency, safety, and user experience. By following structured engineering practices, software engineers create robust and scalable solutions that meet both current and future demands, making software engineering a cornerstone of modern technology.
+
